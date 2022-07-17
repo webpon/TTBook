@@ -52,9 +52,9 @@
   "projectname": "vue3-vite-uniapp",
   "miniprogramRoot": "dist/dev/mp-weixin/",
   "condition": {},
-  "srcMiniprogramRoot": "dist/dev/mp-weixin/",
   "editorSetting": {
     "tabIndent": "insertSpaces",
     "tabSize": 2
-  }
+  },
+  "srcMiniprogramRoot": "dist/dev/mp-weixin/"
 }

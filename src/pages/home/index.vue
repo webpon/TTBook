@@ -1,5 +1,5 @@
 <template>
-  <view class="flex items-center justify-center flex-col">
+  <view class="flex items-center justify-center flex-col mt-5vw">
     <!-- 倒计时 -->
     <view class="count-down-card">
       <h3>考研倒计时</h3>
@@ -47,8 +47,9 @@
         </view>
       </view>
     </view>
+    <page-meta :page-style="'overflow:'+(show?'hidden':'visible')"></page-meta>
     <uni-popup ref="inputDialog" type="dialog">
-      <uni-popup-dialog :showClose="false" :before-close="closeFlag" ref="inputClose" mode="input" title="请输入你的昵称" placeholder="请输入内容" @confirm="dialogInputConfirm">
+      <uni-popup-dialog :showClose="false" :before-close="closeFlag" ref="inputClose" mode="input" title="请输入你的昵称" placeholder="请输入内容" @confirm="dialogInputConfirm" @change="change">
       </uni-popup-dialog>
     </uni-popup>
     <uni-popup ref="registerError" type="message">
@@ -81,7 +82,7 @@ let {
   backStyle,
   clockIn,
   toRecord } = clockHook()
-let { isRegister, registerError, inputDialog, dialogInputConfirm, closeFlag } = registerHook(getRecordList)
+let { isRegister, registerError, inputDialog, dialogInputConfirm, closeFlag, show } = registerHook(getRecordList)
 
 onShow(() => {
   getRecordList()
@@ -98,9 +99,6 @@ function onShareAppMessage() {
     desc: '',//自定义分享描述
   }
 };
-uni.onKeyboardHeightChange(res => {
-  console.log(res.height)
-})
 
 </script>
 <style scoped lang="scss">

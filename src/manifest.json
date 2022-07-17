@@ -54,8 +54,15 @@
     /* 小程序特有相关 */
     "mp-weixin" : {
         "appid" : "",
+        "es6": false,
         "setting" : {
             "urlCheck" : false
+        },
+        "optimization": {
+            "subPackages": true
+        },
+        "networkTimeout" : {
+            "request" : 25000
         },
         "usingComponents" : true
     },
@@ -75,10 +82,10 @@
     "h5" : {
         "router" : {
             "base" : "./",
-            "mode" : "history"
+            "mode" : "hash"
         },
         "devServer" : {
-            "https" : true
+            "https" : false
         }
     }
 }

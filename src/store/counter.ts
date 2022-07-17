@@ -1,12 +1,20 @@
-export default defineStore('counter', {
-	state() {
-		return {
-			count: 0,
-		}
+export default defineStore({
+	id: 'test',
+	state: () => {
+	  return {
+		name: '张三',
+		token: 'token...',
+	  }
+	},
+	getters: {
+	  fullName: (state) => {
+		return state.name + '丰'
+	  },
 	},
 	actions: {
-		inc() {
-			this.count++
-		},
+	  updateName(name: string) {
+		this.name = name
+	 },
 	},
-})
+  })
+   

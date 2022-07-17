@@ -1,8 +1,0 @@
-{
-  "navigationBarTitleText": "首页",
-  "usingComponents": {
-    "uni-popup-dialog": "../../components/customUniUI/lib/uni-popup-dialog/uni-popup-dialog",
-    "uni-popup": "../../components/customUniUI/lib/uni-popup/uni-popup",
-    "uni-popup-message": "../../components/customUniUI/lib/uni-popup-message/uni-popup-message"
-  }
-}

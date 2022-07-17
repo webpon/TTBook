@@ -145,7 +145,9 @@
 			}
 		},
 		mounted() {
-			this.focus = true
+			// setTimeout(() => {
+			// 	this.focus = true
+			// }, 300)
 		},
 		methods: {
 			/**
