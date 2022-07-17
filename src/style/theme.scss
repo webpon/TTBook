@@ -1,0 +1,9 @@
+:root {  
+    /* 深色主题 */
+    --dark-primary-color: #fff;
+    --dark-background-color: #282c34;
+}
+html.dark *:not(a, button) { 
+    background-color: var(--dark-background-color); 
+    color: var(--dark-primary-color) 
+}

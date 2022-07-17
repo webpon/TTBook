@@ -1,0 +1,62 @@
+{		
+  "pages": [
+    {
+      "path": "pages/home/index",
+      "style": {
+        "navigationBarTitleText": "首页"
+      }
+    },
+    {
+      "path": "pages/more/more",
+      "style": {
+        "navigationBarTitleText": "more"
+      }
+    }
+  ],
+  "subPackages": [
+    {
+      "root": "pages/subPage/record",
+      "name": "record",
+      "pages": [
+        {
+          "path": "cardRecord",
+          "style": {
+            "navigationBarTitleText": "打卡记录"
+          }
+        }
+      ]
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#1AA86C",
+    "selectedColor": "#1AA86C",
+    "borderStyle": "white",
+    "backgroundColor": "#ffffff",
+	  "fontSize": "18px",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/more/more",
+        "text": "more"
+      }
+    ]
+  },
+  "usingComponents": {
+    "t-button": "tdesign-miniprogram/button/button"
+  },
+  "easycom": {
+		"autoscan": true,
+		"custom": {
+			"^uni-(.*)": "@/components/customUniUI/lib/uni-$1/uni-$1.vue"
+		}
+	}
+}
