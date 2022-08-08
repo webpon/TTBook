@@ -18,6 +18,20 @@
         "navigationBarTitleText": "上传媒体",
         "enablePullDownRefresh": true
       }
+    },
+    {
+      "path": "pages/time/time",
+      "style": {
+        "navigationBarTitleText": "时间打卡",
+        "enablePullDownRefresh": true
+      }
+    },
+    {
+      "path": "pages/timeRecord/timeRecord",
+      "style": {
+        "navigationBarTitleText": "打卡统计",
+        "enablePullDownRefresh": true
+      }
     }
   ],
   "subPackages": [
@@ -29,6 +43,18 @@
           "path": "cardRecord",
           "style": {
             "navigationBarTitleText": "打卡记录"
+          }
+        }
+      ]
+    },
+    {
+      "root": "pages/time/subPage",
+      "name": "recordEdit",
+      "pages": [
+        {
+          "path": "recordEdit",
+          "style": {
+            "navigationBarTitleText": "打卡"
           }
         }
       ]
@@ -52,8 +78,12 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/more/more",
-        "text": "娱乐场所"
+        "pagePath": "pages/time/time",
+        "text": "时间打卡"
+      },
+      {
+        "pagePath": "pages/timeRecord/timeRecord",
+        "text": "时间统计"
       },
       {
         "pagePath": "pages/share/share",

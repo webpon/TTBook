@@ -48,12 +48,13 @@
       </view>
     </view>
     <uni-popup ref="inputDialog" type="dialog">
-      <uni-popup-dialog :showClose="false" :before-close="closeFlag" ref="inputClose" mode="input" title="请输入你的昵称" placeholder="请输入内容" @confirm="dialogInputConfirm">
+      <uni-popup-dialog :showClose="false" :before-close="closeFlag" ref="inputClose" mode="input" title="请输入你的昵称"
+        placeholder="请输入内容" @confirm="dialogInputConfirm">
       </uni-popup-dialog>
     </uni-popup>
     <uni-popup ref="registerError" type="message">
-				<uni-popup-message type="error" message="请正确输入你的昵称！" :duration="2000"></uni-popup-message>
-		</uni-popup>
+      <uni-popup-message type="error" message="请正确输入你的昵称！" :duration="2000"></uni-popup-message>
+    </uni-popup>
   </view>
 </template>
 
@@ -64,7 +65,7 @@ import { clockHook } from "@/hooks/home/clockHook"
 import { registerHook } from "@/hooks/home/registerHook"
 import { onShow } from "@dcloudio/uni-app";
 
-let { 
+let {
   weekDay,
   countDownProcess,
   countDownDay,
@@ -74,7 +75,7 @@ let {
   nowMonth,
   nowDay,
   currentTime } = countDown()
-let { 
+let {
   getRecordList,
   continuityClock,
   coverStyle,
@@ -89,15 +90,15 @@ onShow(() => {
 onMounted(() => {
   isRegister()
 }),
-//发送给朋友
-function onShareAppMessage() {
-  return {
-    title: '首页',//分享标题
-    path: '',//分享页面路径
-    imageUrl: '',//分享图标
-    desc: '',//自定义分享描述
-  }
-};
+  //发送给朋友
+  function onShareAppMessage() {
+    return {
+      title: '首页',//分享标题
+      path: '',//分享页面路径
+      imageUrl: '',//分享图标
+      desc: '',//自定义分享描述
+    }
+  };
 
 </script>
 <style scoped lang="scss">
