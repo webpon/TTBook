@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "update:uni": "npx @dcloudio/uvm",
+    "list": "cli cloud functions --list cloudfunction --prj Vuee-vite-uniapp --provider aliyun --cloud",
     "serve": "uni",
     "dev": "uni",
     "dev:app": "uni -p app",

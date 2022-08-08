@@ -60,12 +60,6 @@ export function clockHook() {
     }
   }
   async function clockIn() {
-    const value = JSON.parse(uni.getStorageSync("record") || "[]") || [];
-    value.push({
-      date: getDate(new Date()).fullDate,
-      info: "已打卡",
-    });
-    info.selected = value;
     uni.request({
       method: "post",
       url: "https://8f2ad662-66cb-4a7c-8fa5-e7e9e2c18047.bspapp.com/http/mytest/add",

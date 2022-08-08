@@ -3,7 +3,6 @@ export function registerHook(getRecordList: Function) {
   let inputDialog = ref(null);
   let closeFlag = ref(true);
   let registerError = ref(null);
-  let show = ref(false)
   function isRegister() {
     if (!uni.getStorageSync("username")) {
       inputDialog.value.open();
@@ -19,16 +18,11 @@ export function registerHook(getRecordList: Function) {
       getRecordList();
     }
   }
-  function change(e: any) {
-    show.value = e.show
-  }
   return {
-    show,
-    change,
-    isRegister,
     registerError,
     closeFlag,
     inputDialog,
+    isRegister,
     dialogInputConfirm,
   };
 }

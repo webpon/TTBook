@@ -1,7 +1,7 @@
 <template>
   <view class="flex items-center justify-center flex-col mt-5vw">
     <!-- 倒计时 -->
-    <view class="count-down-card">
+    <view class="count-down-card w-90vw h-40vw justify-center">
       <h3>考研倒计时</h3>
       <h3 class="count-down-timer">
         {{ countDownDay }}天-{{ countDownHours }}小时-{{ countDownMinute }}分-{{ countDownSecond }}秒</h3>
@@ -47,9 +47,8 @@
         </view>
       </view>
     </view>
-    <page-meta :page-style="'overflow:'+(show?'hidden':'visible')"></page-meta>
     <uni-popup ref="inputDialog" type="dialog">
-      <uni-popup-dialog :showClose="false" :before-close="closeFlag" ref="inputClose" mode="input" title="请输入你的昵称" placeholder="请输入内容" @confirm="dialogInputConfirm" @change="change">
+      <uni-popup-dialog :showClose="false" :before-close="closeFlag" ref="inputClose" mode="input" title="请输入你的昵称" placeholder="请输入内容" @confirm="dialogInputConfirm">
       </uni-popup-dialog>
     </uni-popup>
     <uni-popup ref="registerError" type="message">
@@ -82,7 +81,7 @@ let {
   backStyle,
   clockIn,
   toRecord } = clockHook()
-let { isRegister, registerError, inputDialog, dialogInputConfirm, closeFlag, show } = registerHook(getRecordList)
+let { isRegister, registerError, inputDialog, dialogInputConfirm, closeFlag } = registerHook(getRecordList)
 
 onShow(() => {
   getRecordList()
@@ -108,8 +107,6 @@ function onShareAppMessage() {
   box-sizing: border-box;
   flex-direction: column;
   align-items: center;
-  width: 90vw;
-  height: 20vh;
   background-color: rgba($color: blue, $alpha: 0.3);
   border-radius: 10px;
 }

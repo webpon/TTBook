@@ -9,7 +9,14 @@
     {
       "path": "pages/more/more",
       "style": {
-        "navigationBarTitleText": "more"
+        "navigationBarTitleText": "娱乐场所"
+      }
+    },
+    {
+      "path": "pages/share/share",
+      "style": {
+        "navigationBarTitleText": "上传媒体",
+        "enablePullDownRefresh": true
       }
     }
   ],
@@ -35,7 +42,7 @@
   },
   "tabBar": {
     "color": "#1AA86C",
-    "selectedColor": "#1AA86C",
+    "selectedColor": "#800080",
     "borderStyle": "white",
     "backgroundColor": "#ffffff",
     "fontSize": "18px",
@@ -46,7 +53,11 @@
       },
       {
         "pagePath": "pages/more/more",
-        "text": "more"
+        "text": "娱乐场所"
+      },
+      {
+        "pagePath": "pages/share/share",
+        "text": "上传"
       }
     ]
   },
