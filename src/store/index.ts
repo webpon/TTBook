@@ -1,19 +1,20 @@
+const username = uni.getStorageSync("username")
 export default defineStore({
 	id: 'test',
 	state: () => {
 	  return {
-		name: '张三',
-		token: 'token...',
+		username,
 	  }
 	},
 	getters: {
 	  fullName: (state) => {
-		return state.name + '丰'
+		return ''
 	  },
 	},
 	actions: {
 	  updateName(name: string) {
-		this.name = name
+		uni.setStorageSync("username", name);
+		this.username = name
 	 },
 	},
   })

@@ -7,12 +7,6 @@
       }
     },
     {
-      "path": "pages/more/more",
-      "style": {
-        "navigationBarTitleText": "娱乐场所"
-      }
-    },
-    {
       "path": "pages/share/share",
       "style": {
         "navigationBarTitleText": "上传媒体",
@@ -30,7 +24,7 @@
       "path": "pages/timeRecord/timeRecord",
       "style": {
         "navigationBarTitleText": "打卡统计",
-        "enablePullDownRefresh": true
+        "enablePullDownRefresh": false
       }
     }
   ],

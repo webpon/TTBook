@@ -2,11 +2,11 @@
 	<view class="uni-steps">
 		<view :class="[direction === 'column' ? 'uni-steps__column' : 'uni-steps__row']">
 			<view :class="[direction === 'column' ? 'uni-steps__column-text-container' : 'uni-steps__row-text-container']">
-				<view @click="clickItem(item)" v-for="(item, index) in options" :key="index"
+				<view @click="clickItem(item)" @longpress="longpressItem(item)" v-for="(item, index) in options" :key="index"
 					:class="[direction === 'column' ? 'uni-steps__column-text' : 'uni-steps__row-text']">
-					<text :style="{ color: index === active ? activeColor : deactiveColor }"
+					<text :style="{ color: index === active ? activeColor : deactiveColor, ...titleStyle }"
 						:class="[direction === 'column' ? 'uni-steps__column-title' : 'uni-steps__row-title']">{{ item.title }}</text>
-					<text :style="{ color: deactiveColor }"
+					<text :style="{ color: deactiveColor, ...descStyle }"
 						:class="[direction === 'column' ? 'uni-steps__column-desc' : 'uni-steps__row-desc']">{{ item.desc }}</text>
 				</view>
 			</view>
@@ -64,6 +64,15 @@ export default {
 			type: String,
 			default: '#B7BDC6'
 		},
+		// 描述文字样式
+		descStyle: {
+			type: Object,
+			default: () => ({})
+		},
+		titleStyle: {
+			type: Object,
+			default: () => ({})
+		},	
 		active: {
 			// 当前步骤
 			type: Number,
@@ -87,6 +96,9 @@ export default {
 	methods: {
 		clickItem(item) {
 			this.$emit('clickItem', item)
+		},
+		longpressItem(item) {
+			this.$emit('longpressItem', item)
 		}
 	}
 }

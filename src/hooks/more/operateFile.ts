@@ -10,7 +10,9 @@ export function operateFile() {
   let backStackVideo = ref([]);
   let frontStackVideo = ref([]);
   let circular = ref(false);
-
+  let inputDialog = ref(null)
+  let inputClose = ref(null)
+  let currentDelFileID = ref(null)
   let picListUrl = computed(() => {
     return [
       ...picList.value.map((item) => {
@@ -51,8 +53,8 @@ export function operateFile() {
                 },
               });
             },
-            fail() {},
-            complete() {},
+            fail() { },
+            complete() { },
           });
         }
       },
@@ -126,25 +128,33 @@ export function operateFile() {
       },
     });
   }
+  function dialogInputConfirm(val: string) {
+    console.log(val);
+    if (val === 'fuck') {
+      uni.request({
+        method: "post",
+        url: "https://8f2ad662-66cb-4a7c-8fa5-e7e9e2c18047.bspapp.com/http/mytest/delFile",
+        data: {
+          fileID: currentDelFileID,
+        },
+        success: (res: any) => {
+          getFileList();
+        },
+        fail: (err) => {
+          console.log(err);
+        },
+      });
+    }
+
+  }
   //删除图片
   function deletePicture(fileID) {
     uni.showActionSheet({
       itemColor: "#FF0000",
       itemList: ["删除图片"],
       success: function () {
-        uni.request({
-          method: "post",
-          url: "https://8f2ad662-66cb-4a7c-8fa5-e7e9e2c18047.bspapp.com/http/mytest/delFile",
-          data: {
-            fileID,
-          },
-          success: (res: any) => {
-            getFileList();
-          },
-          fail: (err) => {
-            console.log(err);
-          },
-        });
+        inputDialog.value.open()
+        currentDelFileID = fileID
       },
       fail: function (res) {
         console.log(res.errMsg);
@@ -153,15 +163,15 @@ export function operateFile() {
   }
   function syncGetVideo() {
     return new Promise((resolve, reject) => {
-        uni.request({
-            url: "https://8f2ad662-66cb-4a7c-8fa5-e7e9e2c18047.bspapp.com/http/mytest/getAllVideos",
-            success: (res: any) => {
-                resolve(res)
-            },
-            fail: (err) => {
-              reject(err)
-            },
-        });
+      uni.request({
+        url: "https://8f2ad662-66cb-4a7c-8fa5-e7e9e2c18047.bspapp.com/http/mytest/getAllVideos",
+        success: (res: any) => {
+          resolve(res)
+        },
+        fail: (err) => {
+          reject(err)
+        },
+      });
     })
   }
   function getTermVideo(
@@ -178,28 +188,28 @@ export function operateFile() {
       },
       success: (res: any) => {
         if (videoList.value.length > 2 && flag === "up") {
-        //   maxVideoFlag.value = maxVideoFlag.value + 1;
-        //   if (res.data.data[0]) {
-            
-            if (frontStackVideo.value.length) {
-                videoList.value[current >= 2 ? current - 2 : current + 3] = frontStackVideo.value.shift()
-            } else {
-                backStackVideo.value.push(
-                    videoList.value[current >= 2 ? current - 2 : current + 3]
-                  ); 
-                videoList.value[current >= 2 ? current - 2 : current + 3] =
-               res.data.data[0];
-               maxVideoFlag.value = maxVideoFlag.value + 1;
-            }
-            
-        //   }
+          //   maxVideoFlag.value = maxVideoFlag.value + 1;
+          //   if (res.data.data[0]) {
+
+          if (frontStackVideo.value.length) {
+            videoList.value[current >= 2 ? current - 2 : current + 3] = frontStackVideo.value.shift()
+          } else {
+            backStackVideo.value.push(
+              videoList.value[current >= 2 ? current - 2 : current + 3]
+            );
+            videoList.value[current >= 2 ? current - 2 : current + 3] =
+              res.data.data[0];
+            maxVideoFlag.value = maxVideoFlag.value + 1;
+          }
+
+          //   }
         } else if (flag === "down") {
           const lastVideo = backStackVideo.value.pop();
           console.log('******************');
           console.log(current >= 1 ? current - 1 : 0);
-          
-          
-          
+
+
+
           if (lastVideo) {
             frontStackVideo.value.push(videoList.value[current >= 1 ? current - 1 : 0]);
             videoList.value[current >= 1 ? current - 1 : 0] = lastVideo;
@@ -219,22 +229,22 @@ export function operateFile() {
         console.log(backStackVideo.value);
         console.log('++++++++++++++++');
         console.log(maxVideoFlag.value);
-        
-        
-        
+
+
+
       },
       fail: (err) => {
         console.log(err);
       },
     });
   }
-  
-  
+
+
   async function hhh() {
     console.log('________________333_________________');
     console.log(await syncGetVideo());
     console.log('{{{{{{{{{{{{{{{{{{{{{');
-    
+
   }
   hhh()
   return {
@@ -245,6 +255,8 @@ export function operateFile() {
     lastCurrent,
     currentId,
     circular,
+    inputDialog,
+    inputClose,
     changeVideo,
     uploadFile,
     getFileList,
@@ -252,5 +264,6 @@ export function operateFile() {
     deletePicture,
     uploadVideo,
     getTermVideo,
+    dialogInputConfirm
   };
 }

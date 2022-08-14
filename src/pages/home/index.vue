@@ -83,12 +83,12 @@ let {
   clockIn,
   toRecord } = clockHook()
 let { isRegister, registerError, inputDialog, dialogInputConfirm, closeFlag } = registerHook(getRecordList)
-
 onShow(() => {
   getRecordList()
 })
 onMounted(() => {
   isRegister()
+
 }),
   //发送给朋友
   function onShareAppMessage() {

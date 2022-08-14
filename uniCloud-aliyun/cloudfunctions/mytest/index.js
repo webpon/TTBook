@@ -1,6 +1,9 @@
 'use strict';
 const db = uniCloud.database(); //代码块为cd
-function getFormatDate({ date, type}) {
+function getFormatDate({
+	date,
+	type
+}) {
 	let dd;
 	if (!date) {
 		dd = new Date();
@@ -13,11 +16,11 @@ function getFormatDate({ date, type}) {
 	const hour = dd.getHours() < 10 ? "0" + dd.getHours() : dd.getHours()
 	const minute = dd.getMinutes() < 10 ? "0" + dd.getMinutes() : dd.getMinutes()
 	const second = dd.getSeconds() < 10 ? "0" + dd.getSeconds() : dd.getSeconds()
-	if(type === 'all') {
+	if (type === 'all') {
 		return y + "-" + m + "-" + d + ' ' + hour + ':' + minute + ':' + second
-	} else if(type === 'date') {
+	} else if (type === 'date') {
 		return y + "-" + m + "-" + d
-	} else if(type === 'time') {
+	} else if (type === 'time') {
 		return hour + ':' + minute + ':' + second
 	} else {
 		return ''
@@ -64,16 +67,19 @@ exports.main = async (event, context) => {
 				collection
 			}
 		} else if (path === '/getCurrentTimeRecord') {
-			const currentDate = getFormatDate({ type: 'date'})
-			const { username = '' } = queryStringParameters
+			const {
+				username = '', currentDate
+			} = queryStringParameters
 			const collection = await db.collection("timeRecord").where({
 				username,
 				'date': currentDate
 			}).get()
+			let total = 0
 			const dataList = collection.data.map(item => {
 				let desc = item.startTimeDesc
-				if(item.overTime) {
+				if (item.overTime) {
 					desc = desc + ' -> ' + item.overTimeDesc
+					total += item.overTime - item.startTime
 				}
 				item.desc = desc
 				return item
@@ -85,7 +91,39 @@ exports.main = async (event, context) => {
 				context,
 				currentDate,
 				collection,
-				hh: collection.data
+				total
+			}
+		} else if (path === '/getDayRecord') {
+			const {
+				username = ''
+			} = queryStringParameters
+			const collection = await db.collection("timeRecord").where({
+				username,
+			}).get()
+			let dayRecord = {}
+			const dataList = collection.data.map(item => {
+				if (item.overTime) {
+					const date = item.date
+					dayRecord[date] ? dayRecord[date] += item.overTime - item.startTime : dayRecord[date] = item.overTime - item.startTime
+				}
+				return item
+			})
+			for (let key in dayRecord) {
+				const value = dayRecord[key]
+				dayRecord[key] = (value / 3600000).toFixed(1)
+
+			}
+			const dayRecordLine = Object.keys(dayRecord)
+			const dayRecordValue = Object.values(dayRecord)
+			// 返回数据给客户端
+			return {
+				dataList,
+				event,
+				context,
+				collection,
+				dayRecordLine,
+				dayRecordValue,
+				dayRecord
 			}
 		} else if (path === '/getAllPicture') {
 			const collection = await db.collection("storageTable").get()
@@ -204,21 +242,36 @@ exports.main = async (event, context) => {
 			// }
 			const param = JSON.parse(body) // param为客户端上传的数据
 			await db.collection('timeRecord').where({
-				username: param.username,
-				startTime: param.startTime
+				_id: param._id,
 			}).update({
+				startTime: param.startTime,
+				startTimeDesc: param.startTimeDesc,
 				overTime: param.overTime,
 				overTimeDesc: param.overTimeDesc
 			})
+			const list = await db.collection('timeRecord').where({
+				_id: param._id
+			}).get()
 			return {
 				msg: '添加成功',
-				ff: param.startTime,
 				username: param.username,
+				event,
+				context,
+				list
+			}
+		}
+		else if (path === '/delTimeRecord') {
+			let body = event.body
+			const { _id } = JSON.parse(body) // param为客户端上传的数据
+			await db.collection('timeRecord').where({ _id }).remove()
+			return {
+				msg: '删除成功',
 				event,
 				context
 			}
 		}
 	}
+}
 	// const str = "放回数据"
 	// const res = await db.collection('users').get()
 	// const data = {
@@ -231,5 +284,3 @@ exports.main = async (event, context) => {
 	// 	event,
 	// 	context
 	// }
-
-};

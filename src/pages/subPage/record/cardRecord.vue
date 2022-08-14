@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts" name="subPage">
-import counter from '@/store/counter'
+import counter from '@/store'
 const info = reactive({
     selected: []
 })

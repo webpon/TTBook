@@ -50,11 +50,11 @@
   "libVersion": "2.25.0",
   "appid": "wxf15d83db015d8e0b",
   "projectname": "vue3-vite-uniapp",
-  "miniprogramRoot": "dist/dev/mp-weixin/",
+  "miniprogramRoot": "dist/build/mp-weixin/",
   "condition": {},
   "editorSetting": {
     "tabIndent": "insertSpaces",
     "tabSize": 2
   },
-  "srcMiniprogramRoot": "dist/dev/mp-weixin/"
+  "srcMiniprogramRoot": "dist/build/mp-weixin/"
 }
