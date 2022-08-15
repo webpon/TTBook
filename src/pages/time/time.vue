@@ -6,9 +6,18 @@
     </view>
     <h3 class="my-20rpx w-90vw h-10vw leading-10vw text-center">{{ getDate(new Date()).fullDate }}</h3>
     <view class="w-90vw bg-blue-300 rounded-20rpx">
-      <uni-steps @clickItem="editRecord" @longpressItem="delRecord" :active="-1" :options="orderList"
-        active-color="skyblue" :descStyle="{ color: 'blue' }" deactiveColor="purple" :titleStyle="{ color: 'black' }"
-        direction="column" />
+      <uni-steps 
+        @clickItem="editRecord" 
+        @longpressItem="delRecord" 
+        active-color="skyblue" 
+        deactiveColor="purple"
+        direction="column"
+        :active="-1" 
+        :options="orderList"
+        :circleStyle="{ marginTop: '21rpx' }" 
+        :descStyle="{ color: 'blue', fontSize: '30rpx', lineHeight: '55rpx' }" 
+        :titleStyle="{ color: 'black', fontSize: '36rpx', lineHeight: '55rpx' }"
+      />
     </view>
   </view>
   <view v-else>

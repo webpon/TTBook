@@ -22,7 +22,7 @@
 						<uni-icons :color="activeColor" :type="activeIcon" size="14"></uni-icons>
 					</view>
 					<view v-else :class="[direction === 'column' ? 'uni-steps__column-circle' : 'uni-steps__row-circle']"
-						:style="{ backgroundColor: index < active ? activeColor : deactiveColor }"></view>
+						:style="{ backgroundColor: index < active ? activeColor : deactiveColor, ...circleStyle }"></view>
 					<view
 						:class="[direction === 'column' ? 'uni-steps__column-line' : 'uni-steps__row-line', direction === 'column' ? 'uni-steps__column-line--after' : 'uni-steps__row-line--after']"
 						:style="{ backgroundColor: index < active && index !== options.length - 1 ? activeColor : index === options.length - 1 ? 'transparent' : deactiveColor }">
@@ -72,7 +72,11 @@ export default {
 		titleStyle: {
 			type: Object,
 			default: () => ({})
-		},	
+		},
+		circleStyle: {
+			type: Object,
+			default: () => ({})
+		},		
 		active: {
 			// 当前步骤
 			type: Number,
