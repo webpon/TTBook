@@ -4,14 +4,18 @@
 			<h3 class="mb-40rpx">今天已累计学习{{ countDownHours }}小时{{ countDownMinute }}分</h3>
 			<button type="primary" size="mini" @click="addTimeRecord">添加记录</button>
 		</view>
-		<view class="example-body">
+		<view class="my-20px">
 			<uni-datetime-picker type="date" :clear-icon="false" v-model="currentDay" @change="changeDay"/>
 		</view>
+		
 		<view class="w-90vw bg-blue-300 rounded-20rpx">
-			<uni-steps @clickItem="editRecord" @longpressItem="delRecord" active-color="skyblue" deactiveColor="purple"
+			<uni-steps v-if="orderList.length > 0" @clickItem="editRecord" @longpressItem="delRecord" active-color="skyblue" deactiveColor="purple"
 				direction="column" :active="-1" :options="orderList" :circleStyle="{ marginTop: '21rpx' }"
 				:descStyle="{ color: 'blue', fontSize: '34rpx', lineHeight: '55rpx' }"
 				:titleStyle="{ color: 'black', fontSize: '34rpx', lineHeight: '55rpx' }" />
+			<view v-else class="flex flex-col items-center leading-30vh h-30vh">
+				暂无记录~
+			</view>
 		</view>
 	</view>
 	<view v-else>
