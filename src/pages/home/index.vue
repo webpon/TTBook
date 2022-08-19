@@ -88,7 +88,6 @@ onShow(() => {
 })
 onMounted(() => {
   isRegister()
-
 }),
   //发送给朋友
   function onShareAppMessage() {

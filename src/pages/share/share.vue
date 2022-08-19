@@ -32,8 +32,6 @@ let lastCurrent = ref('0');
 const { picList, videoList, uploadFile, uploadVideo, percentCompleted, getFileList, previewPicture, deletePicture, inputDialog, inputClose, dialogInputConfirm } = operateFile()
 onMounted(() => {
     getFileList()
-
-
 })
 onPullDownRefresh(
     () => {

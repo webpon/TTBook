@@ -129,7 +129,6 @@ export function operateFile() {
     });
   }
   function dialogInputConfirm(val: string) {
-    console.log(val);
     if (val === 'fuck') {
       uni.request({
         method: "post",
@@ -145,7 +144,6 @@ export function operateFile() {
         },
       });
     }
-
   }
   //删除图片
   function deletePicture(fileID) {

@@ -77,9 +77,11 @@ exports.main = async (event, context) => {
 			let total = 0
 			const dataList = collection.data.map(item => {
 				let desc = item.startTimeDesc
+				const gap = item.overTime - item.startTime
+				const gapDesc = '(' + (gap / 3600000).toFixed(1) + '小时)' 
 				if (item.overTime) {
-					desc = desc + ' -> ' + item.overTimeDesc
-					total += item.overTime - item.startTime
+					desc = desc + ' -> ' + item.overTimeDesc + ' ' + gapDesc
+					total += gap
 				}
 				item.desc = desc
 				return item
@@ -97,10 +99,11 @@ exports.main = async (event, context) => {
 			const {
 				username = ''
 			} = queryStringParameters
-			const collection = await db.collection("timeRecord").where({
+			const collection = await db.collection("timeRecord").limit(500).where({
 				username,
 			}).get()
 			let dayRecord = {}
+			let arr = []
 			const dataList = collection.data.map(item => {
 				if (item.overTime) {
 					const date = item.date
@@ -123,7 +126,8 @@ exports.main = async (event, context) => {
 				collection,
 				dayRecordLine,
 				dayRecordValue,
-				dayRecord
+				dayRecord,
+				arr
 			}
 		} else if (path === '/getAllPicture') {
 			const collection = await db.collection("storageTable").get()
