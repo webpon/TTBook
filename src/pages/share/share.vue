@@ -24,7 +24,7 @@
 
         <!-- 年月日时分 -->
 		<t-date-time-picker title="选择日期和时间" :visible="visible" mode="minute" format="YYYY-MM-DD HH:mm"
-			@change="onConfirm" bindcancel="hidePicker">
+			@change="onConfirm" @cancel="hidePicker">
 		</t-date-time-picker>
 		{{visible}}
 		<t-button  @tap="test">按钮</t-button>
@@ -49,13 +49,14 @@ onPullDownRefresh(
     }
 )
 function test() {
-	console.log('__________________');
-	
 	visible.value = true
+}
+function hidePicker() {
+    visible.value = false
 }
 function onConfirm(date: any) {
 	console.log(date);
-	
+    visible.value = false
 }
 function changeVideo(e) {
     console.log(e);
