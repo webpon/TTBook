@@ -10,14 +10,22 @@
       "path": "pages/share/share",
       "style": {
         "navigationBarTitleText": "上传媒体",
-        "enablePullDownRefresh": true
+        "enablePullDownRefresh": true,
+        "usingComponents": {
+					"t-button": "/wxcomponents/t-design/button/button",
+          "t-date-time-picker": "/wxcomponents/t-design/date-time-picker/date-time-picker"
+				}
       }
     },
     {
       "path": "pages/time/time",
       "style": {
         "navigationBarTitleText": "时间打卡",
-        "enablePullDownRefresh": true
+        "enablePullDownRefresh": true,
+        "usingComponents": {
+					"t-button": "/wxcomponents/t-design/button/button",
+          "t-date-time-picker": "/wxcomponents/t-design/date-time-picker/date-time-picker"
+				}
       }
     },
     {

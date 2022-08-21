@@ -251,7 +251,8 @@ exports.main = async (event, context) => {
 				startTime: param.startTime,
 				startTimeDesc: param.startTimeDesc,
 				overTime: param.overTime,
-				overTimeDesc: param.overTimeDesc
+				overTimeDesc: param.overTimeDesc,
+				title: param.title
 			})
 			const list = await db.collection('timeRecord').where({
 				_id: param._id

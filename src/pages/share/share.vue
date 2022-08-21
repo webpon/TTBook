@@ -21,6 +21,13 @@
             <uni-popup-dialog ref="inputClose" mode="input" title="请输入删除密码！" value="" placeholder="请输入密码"
                 @confirm="dialogInputConfirm"></uni-popup-dialog>
         </uni-popup>
+
+        <!-- 年月日时分 -->
+		<t-date-time-picker title="选择日期和时间" :visible="visible" mode="minute" format="YYYY-MM-DD HH:mm"
+			@change="onConfirm" bindcancel="hidePicker">
+		</t-date-time-picker>
+		{{visible}}
+		<t-button  @tap="test">按钮</t-button>
     </view>
 </template>
 <script setup lang="ts" name="more">
@@ -29,6 +36,9 @@ import { onPullDownRefresh } from "@dcloudio/uni-app";
 let videoRef = ref(null)
 let videoContext = ref(null)
 let lastCurrent = ref('0');
+
+let visible = ref(false)
+
 const { picList, videoList, uploadFile, uploadVideo, percentCompleted, getFileList, previewPicture, deletePicture, inputDialog, inputClose, dialogInputConfirm } = operateFile()
 onMounted(() => {
     getFileList()
@@ -38,6 +48,15 @@ onPullDownRefresh(
         getFileList()
     }
 )
+function test() {
+	console.log('__________________');
+	
+	visible.value = true
+}
+function onConfirm(date: any) {
+	console.log(date);
+	
+}
 function changeVideo(e) {
     console.log(e);
     videoContext.value = uni.createVideoContext(lastCurrent.value);//创建视频实例指向video
