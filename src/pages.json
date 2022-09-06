@@ -93,9 +93,6 @@
       }
     ]
   },
-  "usingComponents": {
-    "t-button": "tdesign-miniprogram/button/button"
-  },
   "easycom": {
     "autoscan": true,
     "custom": {
